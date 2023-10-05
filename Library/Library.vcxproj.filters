@@ -350,5 +350,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Exports.def" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
