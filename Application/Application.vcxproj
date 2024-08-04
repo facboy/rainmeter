@@ -53,6 +53,7 @@ if not exist "$(OutDir)Defaults\Layouts" xcopy /Q /S /Y ..\Build\Layouts "$(OutD
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Rainmeter.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -63,5 +64,12 @@ if not exist "$(OutDir)Defaults\Layouts" xcopy /Q /S /Y ..\Build\Layouts "$(OutD
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\LuaJIT.2.1.0-rolling\build\native\LuaJIT.targets" Condition="Exists('..\packages\LuaJIT.2.1.0-rolling\build\native\LuaJIT.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\LuaJIT.2.1.0-rolling\build\native\LuaJIT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LuaJIT.2.1.0-rolling\build\native\LuaJIT.targets'))" />
+  </Target>
 </Project>
